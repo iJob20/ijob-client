@@ -123,10 +123,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const login = async (email: string, password: string) => {
-    const response = await axios.post("/api/auth/login", {
-      email,
-      password,
-    });
+    const response = await axios.post(
+      "http://localhost:3333/api/v1/auth/users/signin",
+      {
+        email,
+        password,
+        type: "admin",
+      }
+    );
     //@ts-ignore
     const { accessToken, user } = response.data;
 
