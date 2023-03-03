@@ -31,15 +31,19 @@ const Register: FC = () => {
   const [loading, setLoading] = useState(false);
 
   const initialValues = {
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
+    type: "",
+    phoneNumber: "",
     terms: true,
     submit: null,
   };
   // form field value validation schema
   const validationSchema = Yup.object().shape({
-    name: Yup.string().required("Name is required"),
+    firstName: Yup.string().required("First name is required"),
+    lastName: Yup.string().required("Last name is required"),
     email: Yup.string()
       .email("Must be a valid email")
       .max(255)
@@ -56,7 +60,14 @@ const Register: FC = () => {
       onSubmit: async (values: any) => {
         setLoading(true);
         try {
-          await register(values.email, values.password, values.name);
+          await register(
+            values.email,
+            values.password,
+            values.firstName,
+            values.lastName,
+            values.type,
+            values.phoneNumber
+          );
           setLoading(false);
           toast.success("You registered successfully");
           navigate("/dashboard");
@@ -116,18 +127,32 @@ const Register: FC = () => {
               <TextFieldWrapper>
                 <LightTextField
                   fullWidth
-                  name="name"
+                  name="firstName"
                   type="text"
-                  label="Name"
+                  label="First Name"
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  value={values.name || ""}
-                  error={Boolean(touched.name && errors.name)}
-                  helperText={touched.name && errors.name}
+                  value={values.firstName || ""}
+                  error={Boolean(touched.firstName && errors.firstName)}
+                  helperText={touched.firstName && errors.firstName}
                 />
               </TextFieldWrapper>
 
               <TextFieldWrapper>
+                <LightTextField
+                  fullWidth
+                  name="lastName"
+                  type="text"
+                  label="Last Name"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.lastName || ""}
+                  error={Boolean(touched.lastName && errors.lastName)}
+                  helperText={touched.lastName && errors.lastName}
+                />
+              </TextFieldWrapper>
+
+              <TextFieldWrapper sx={{ mt: 2 }}>
                 <LightTextField
                   fullWidth
                   name="email"
@@ -140,21 +165,21 @@ const Register: FC = () => {
                   helperText={touched.email && errors.email}
                 />
               </TextFieldWrapper>
-            </FlexBox>
 
-            <TextFieldWrapper sx={{ mt: 2, width: "100%" }}>
-              <LightTextField
-                fullWidth
-                name="password"
-                type="password"
-                label="Password"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.password || ""}
-                error={Boolean(touched.password && errors.password)}
-                helperText={touched.password && errors.password}
-              />
-            </TextFieldWrapper>
+              <TextFieldWrapper sx={{ mt: 2 }}>
+                <LightTextField
+                  fullWidth
+                  name="password"
+                  type="password"
+                  label="Password"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.password || ""}
+                  error={Boolean(touched.password && errors.password)}
+                  helperText={touched.password && errors.password}
+                />
+              </TextFieldWrapper>
+            </FlexBox>
 
             <FormControlLabel
               control={

@@ -110,8 +110,14 @@ const AuthContext = createContext({
   method: "JWT",
   login: (email: string, password: string) => Promise.resolve(),
   logout: () => {},
-  register: (email: string, password: string, username: string) =>
-    Promise.resolve(),
+  register: (
+    email: string,
+    password: string,
+    username: string,
+    lastName: string,
+    type: string,
+    phoneNumber: string
+  ) => Promise.resolve(),
 });
 
 // props type
@@ -148,11 +154,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     username: string,
     password: string
   ) => {
-    const response = await axios.post("/api/auth/register", {
-      email,
-      username,
-      password,
-    });
+    const response = await axios.post(
+      "http://localhost:3333/api/v1/auth/users/signup",
+      {
+        email,
+        username,
+        password,
+      }
+    );
     // @ts-ignore
     const { accessToken, user } = response.data;
     setSession(accessToken);
