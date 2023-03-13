@@ -100,7 +100,8 @@ const AddNewUser: FC = () => {
     jobType: "",
     yearsOfExperienceMin: 0,
     yearsOfExperienceMax: 0,
-    country: "",
+    Skills: [],
+
     state: "",
     city: "",
     address: "",
@@ -120,21 +121,22 @@ const AddNewUser: FC = () => {
         "Maximum years of experience must be greater than or equal to minimum"
       ),
     }),
-    country: Yup.string().required("Country is Required!"),
-    state: Yup.string().required("State is Required!"),
+    Skills: Yup.array().required("Skills is Required!"),
+
     city: Yup.string().required("City is Required!"),
     address: Yup.string().required("Address is Required!"),
     zip: Yup.string().required("Zip is Required!"),
     jobDescription: Yup.string().required("job Description is Required!"),
   });
 
-  const { values, errors, handleChange, handleSubmit, touched } = useFormik({
-    initialValues,
-    validationSchema,
-    onSubmit: () => {
-      console.log("submit", values);
-    },
-  });
+  const { values, errors, handleChange, handleSubmit, touched, setFieldValue } =
+    useFormik({
+      initialValues,
+      validationSchema,
+      onSubmit: () => {
+        console.log("submit", values);
+      },
+    });
 
   return (
     <Box pt={2} pb={4}>
@@ -320,7 +322,32 @@ const AddNewUser: FC = () => {
                   </Grid>
 
                   <Grid item sm={12} xs={12}>
-                    <CheckboxesTags />
+                    <CheckboxesTags
+                      onChange={(event: any, value: any) => {
+                        setFieldValue("Skills", value);
+                      }}
+                    />
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <LightTextField
+                      multiline
+                      fullWidth
+                      rows={10}
+                      name="jobDescription"
+                      placeholder="job Description"
+                      value={values.jobDescription}
+                      onChange={handleChange}
+                      error={Boolean(
+                        touched.jobDescription && errors.jobDescription
+                      )}
+                      helperText={
+                        touched.jobDescription && errors.jobDescription
+                      }
+                      sx={{
+                        "& .MuiOutlinedInput-root textarea": { padding: 0 },
+                      }}
+                    />
                   </Grid>
 
                   <Grid item sm={6} xs={12}>
@@ -356,27 +383,6 @@ const AddNewUser: FC = () => {
                       onChange={handleChange}
                       error={Boolean(touched.zip && errors.zip)}
                       helperText={touched.zip && errors.zip}
-                    />
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    <LightTextField
-                      multiline
-                      fullWidth
-                      rows={10}
-                      name="jobDescription"
-                      placeholder="job Description"
-                      value={values.jobDescription}
-                      onChange={handleChange}
-                      error={Boolean(
-                        touched.jobDescription && errors.jobDescription
-                      )}
-                      helperText={
-                        touched.jobDescription && errors.jobDescription
-                      }
-                      sx={{
-                        "& .MuiOutlinedInput-root textarea": { padding: 0 },
-                      }}
                     />
                   </Grid>
 

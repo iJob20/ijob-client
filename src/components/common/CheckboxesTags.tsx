@@ -6,10 +6,14 @@ import TextField from "@mui/material/TextField";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
+interface ICheckboxesTagsProps {
+  onChange: any;
+}
 
-export default function CheckboxesTags() {
+export default function CheckboxesTags({ onChange }: ICheckboxesTagsProps) {
   return (
     <Autocomplete
+      onChange={onChange}
       fullWidth
       multiple
       options={top100Skills}
