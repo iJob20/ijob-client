@@ -27,6 +27,11 @@ const index = [
     path: "/dashboard/add-user",
   },
   {
+    title: "Add Jobs",
+    Icon: Icons.AddUserIcon,
+    path: "/dashboard/add-Job",
+  },
+  {
     title: "Login",
     Icon: Icons.LoginIcon,
     path: "/login",

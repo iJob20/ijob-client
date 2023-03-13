@@ -38,6 +38,7 @@ const AddNewUser = Loadable(
   lazy(() => import("./pages/userManagement/AddNewUser"))
 );
 
+const AddJob = Loadable(lazy(() => import("./pages/companyManagement/AddJob")));
 // error
 const Error = Loadable(lazy(() => import("./pages/404")));
 
@@ -99,6 +100,10 @@ const routes = [
       {
         path: "add-user",
         element: <AddNewUser />,
+      },
+      {
+        path: "add-Job",
+        element: <AddJob />,
       },
     ],
   },
