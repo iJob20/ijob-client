@@ -14,6 +14,7 @@ import {
   styled,
   Switch,
 } from "@mui/material";
+import CheckboxesTags from "components/common/CheckboxesTags";
 import LightTextField from "components/LightTextField";
 import { Small, Tiny } from "components/Typography";
 import { useFormik } from "formik";
@@ -318,16 +319,8 @@ const AddNewUser: FC = () => {
                     </FormControl>
                   </Grid>
 
-                  <Grid item sm={6} xs={12}>
-                    <LightTextField
-                      fullWidth
-                      name="state"
-                      placeholder="State/Region"
-                      value={values.state}
-                      onChange={handleChange}
-                      error={Boolean(touched.state && errors.state)}
-                      helperText={touched.state && errors.state}
-                    />
+                  <Grid item sm={12} xs={12}>
+                    <CheckboxesTags />
                   </Grid>
 
                   <Grid item sm={6} xs={12}>
