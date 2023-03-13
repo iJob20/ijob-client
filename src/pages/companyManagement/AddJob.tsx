@@ -317,33 +317,6 @@ const AddNewUser: FC = () => {
                       </StyledSelect>
                     </FormControl>
                   </Grid>
-                  {/* <Grid item sm={6} xs={12}>
-                    <LightTextField
-                      fullWidth
-                      name="yearsOfExperience"
-                      placeholder="years Of Experience"
-                      value={values.yearsOfExperience}
-                      onChange={handleChange}
-                      error={Boolean(
-                        touched.yearsOfExperience && errors.yearsOfExperience
-                      )}
-                      helperText={
-                        touched.yearsOfExperience && errors.yearsOfExperience
-                      }
-                    />
-                  </Grid>
-
-                  <Grid item sm={6} xs={12}>
-                    <LightTextField
-                      fullWidth
-                      name="country"
-                      placeholder="Country"
-                      value={values.country}
-                      onChange={handleChange}
-                      error={Boolean(touched.country && errors.country)}
-                      helperText={touched.country && errors.country}
-                    />
-                  </Grid> */}
 
                   <Grid item sm={6} xs={12}>
                     <LightTextField
