@@ -218,6 +218,7 @@ const AddNewUser: FC = () => {
                   <Grid item sm={6} xs={12}>
                     <LightTextField
                       fullWidth
+                      label="job Title"
                       name="jobTitle"
                       placeholder="job Title"
                       value={values.jobTitle}
@@ -335,6 +336,7 @@ const AddNewUser: FC = () => {
                       fullWidth
                       rows={10}
                       name="jobDescription"
+                      label="job Description"
                       placeholder="job Description"
                       value={values.jobDescription}
                       onChange={handleChange}
