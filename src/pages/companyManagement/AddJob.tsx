@@ -16,7 +16,7 @@ import {
 } from "@mui/material";
 import CheckboxesTags from "components/common/CheckboxesTags";
 import LightTextField from "components/LightTextField";
-import { Small, Tiny } from "components/Typography";
+import { Small } from "components/Typography";
 import { useFormik } from "formik";
 import useTitle from "hooks/useTitle";
 import { FC } from "react";
@@ -32,8 +32,7 @@ const experienceOptions = [
   { value: 7, label: "7 years" },
   { value: 8, label: "8 years" },
   { value: 9, label: "9 years" },
-  { value: 10, label: "10 years or more" },
-  { value: "+", label: "10+ years" },
+  { value: 10, label: "10 years" },
 ];
 // styled components
 const ButtonWrapper = styled(Box)(({ theme }) => ({
@@ -92,7 +91,7 @@ const StyledSelect = styled(Select)<SelectProps>(({ theme }) => ({
 
 const AddNewUser: FC = () => {
   // change navbar title
-  useTitle("Add New User");
+  useTitle("Add New Job");
   //[companyName,city, state, country, yearsOfExperience, jobType, technologies, , ]//
   const initialValues = {
     jobTitle: "",
@@ -101,11 +100,8 @@ const AddNewUser: FC = () => {
     yearsOfExperienceMin: 0,
     yearsOfExperienceMax: 0,
     Skills: [],
-
-    state: "",
     city: "",
     address: "",
-    zip: "",
   };
 
   const validationSchema = Yup.object().shape({
@@ -125,7 +121,7 @@ const AddNewUser: FC = () => {
 
     city: Yup.string().required("City is Required!"),
     address: Yup.string().required("Address is Required!"),
-    zip: Yup.string().required("Zip is Required!"),
+
     jobDescription: Yup.string().required("job Description is Required!"),
   });
 
@@ -183,31 +179,10 @@ const AddNewUser: FC = () => {
               <Box maxWidth={250} marginTop={5} marginBottom={1}>
                 <SwitchWrapper>
                   <Small display="block" fontWeight={600}>
-                    Public Profile
+                    Show Company Name
                   </Small>
                   <Switch defaultChecked />
                 </SwitchWrapper>
-
-                <SwitchWrapper>
-                  <Small display="block" fontWeight={600}>
-                    Banned
-                  </Small>
-                  <Switch defaultChecked />
-                </SwitchWrapper>
-                <Tiny display="block" color="text.disabled" fontWeight={500}>
-                  Apply disable account
-                </Tiny>
-
-                <SwitchWrapper>
-                  <Small display="block" fontWeight={600}>
-                    Email Verified
-                  </Small>
-                  <Switch defaultChecked />
-                </SwitchWrapper>
-                <Tiny display="block" color="text.disabled" fontWeight={500}>
-                  Disabling this will automatically send the user a verification
-                  email
-                </Tiny>
               </Box>
             </Card>
           </Grid>
@@ -376,7 +351,7 @@ const AddNewUser: FC = () => {
                     />
                   </Grid>
 
-                  <Grid item sm={6} xs={12}>
+                  {/* <Grid item sm={6} xs={12}>
                     <LightTextField
                       fullWidth
                       name="zip"
@@ -386,11 +361,11 @@ const AddNewUser: FC = () => {
                       error={Boolean(touched.zip && errors.zip)}
                       helperText={touched.zip && errors.zip}
                     />
-                  </Grid>
+                  </Grid> */}
 
                   <Grid item xs={12}>
                     <Button type="submit" variant="contained">
-                      Create User
+                      Create Job
                     </Button>
                   </Grid>
                 </Grid>
